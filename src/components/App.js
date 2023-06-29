@@ -35,7 +35,7 @@ function App() {
   }
 
   return (
-    <div className="page">
+    <>
       <Header />
       <Main 
         onEditProfile={handleEditProfileClick}
@@ -47,18 +47,18 @@ function App() {
 
       <PopupWithForm name="edit-profile" title="Редактировать профиль" buttonText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
         <label className="popup__input-container">
-          <input id="name-input" className="popup__text popup__text_type_name" type="text" name="name" placeholder="Ваше имя" minlength="2" maxlength="40" required/>
+          <input id="name-input" className="popup__text popup__text_type_name" type="text" name="name" placeholder="Ваше имя" minLength="2" maxLength="40" required/>
           <span className="name-input-error popup__text-error"></span>
         </label>
         <label className="popup__input-container">
-          <input id="status-input" className="popup__text popup__text_type_status" type="text" name="about" placeholder="О себе" minlength="2" maxlength="200" required/>
+          <input id="status-input" className="popup__text popup__text_type_status" type="text" name="about" placeholder="О себе" minLength="2" maxLength="200" required/>
           <span className="status-input-error popup__text-error"></span>
         </label>
       </PopupWithForm>
 
       <PopupWithForm name="add-card" title="Новое место" buttonText="Создать" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <label className="popup__input-container">
-          <input id="location-input" className="popup__text popup__text_type_location" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required/>
+          <input id="location-input" className="popup__text popup__text_type_location" type="text" name="name" placeholder="Название" minLength="2" maxLength="30" required/>
           <span className="location-input-error popup__text-error"></span>
         </label>
         <label className="popup__input-container">
@@ -91,7 +91,7 @@ function App() {
           </div>
         </article>
       </template>
-    </div>
+    </>
   );
 }
 
