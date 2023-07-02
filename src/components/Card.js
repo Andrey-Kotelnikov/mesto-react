@@ -1,16 +1,35 @@
-function Card({card, onCardClick}) {
-  function handleClick() {
-    onCardClick(card)
+import React from "react";
+import { CurrentUserContext } from "./CurrentUserContext";
+
+function Card({card, onCardClick, onCardLike, onCardDelete}) {
+  const userData = React.useContext(CurrentUserContext);
+
+  const isOwn = card.owner._id === userData._id;
+
+  const isLiked = card.likes.some(i => i._id === userData._id);
+
+  function handleCardClick() {
+    onCardClick(card);
+    //console.log(card)
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
+    console.log('del');
+  }
+
+  function handleLikeClick() {
+    onCardLike(card);
   }
 
   return (
     <article className="element">
-      <img className="element__image" src={card.link} alt={card.name} onClick={handleClick}/>
-      <button className="element__trash" type="button" aria-label="удалить карточку"></button>
+      <img className="element__image" src={card.link} alt={card.name} onClick={handleCardClick}/>
+      {isOwn && <button className="element__trash" type="button" aria-label="удалить карточку" onClick={handleDeleteClick} />}
       <div className="element__items">
         <h3 className="element__title">{card.name}</h3>
         <div className="element__like-container">
-          <button className="element__like" type="button" aria-label="понравилось"></button>
+          <button className={`element__like ${isLiked && "element__like_active"}`} type="button" aria-label="понравилось" onClick={handleLikeClick}></button>
           <p className="element__like-counter">{0 || card.likes.length}</p>
         </div>
       </div>
