@@ -4,7 +4,11 @@ import PopupWithForm from "./PopupWithForm";
 function EditAvatarPopup(props) {
   const inputRef = React.useRef();
 
-  const [avatar, setAvatar] = React.useState('')
+  const [avatar, setAvatar] = React.useState('');
+
+  React.useEffect(() => {
+    setAvatar('');
+  }, [props.isOpen]);
 
   function handleChangeAvatar(evt) {
     setAvatar(evt.target.value);
